@@ -1,0 +1,42 @@
+--- kaspaliste-0.94/kaspaliste/klib/kaspabase.cpp.orig	Fri Dec 20 15:10:16 2002
++++ kaspaliste-0.94/kaspaliste/klib/kaspabase.cpp	Mon Oct 27 10:55:47 2003
+@@ -1167,8 +1167,8 @@
+ 	if(!where || strlen(where)==0) abort();
+   Str s("select author_no, publication_no from publication_author "); s+=where;
+   exec(s);
+-  Oid publ[tuples()];
+-  Oid author[tuples()];
++  Oid *publ = new Oid[tuples()];
++  Oid *author = new Oid[tuples()];
+   for(int i=0; i<tuples(); i++) {
+      publ[i]=str2oid(getValue(i, "publication_no"));
+      author[i]=str2oid(getValue(i, "author_no"));
+@@ -1176,6 +1176,8 @@
+   for(int i=0; i<tuples(); i++) {
+      deletePublAuthor(publ[i], author[i]);
+   }
++  delete [] publ;
++  delete [] author;
+ }
+ 
+ void KaspaBase::deletePublAuthor(Oid publ, Oid author) {
+@@ -1248,8 +1250,8 @@
+ 	if(!where || strlen(where)==0) abort();
+   Str s("select author_no, part_no from part_author "); s+=where;
+   exec(s);
+-  Oid part[tuples()];
+-  Oid author[tuples()];
++  Oid *part = new Oid[tuples()];
++  Oid *author = new Oid[tuples()];
+   for(int i=0; i<tuples(); i++) {
+      part[i]=str2oid(getValue(i, "part_no"));
+      author[i]=str2oid(getValue(i, "author_no"));
+@@ -1257,6 +1259,8 @@
+   for(int i=0; i<tuples(); i++) {
+      deletePartAuthor(part[i], author[i]);
+   }
++  delete [] part;
++  delete [] author;
+ }
+ 
+ void KaspaBase::deletePartAuthor(Oid part, Oid author) {
