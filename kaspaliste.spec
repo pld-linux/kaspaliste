@@ -1,4 +1,5 @@
 Summary:	The literature database
+Summary(pl):	Baza danych literatury
 Name:		kaspaliste
 Version:	0.94
 Release:	0.1
@@ -7,8 +8,9 @@ Group:		X11/Applications
 Source0:	http://kaspaliste.sourceforge.net/%{name}-%{version}.tar.bz2
 # Source0-md5:	f969e50c9731db2c2f07342062d5da84
 URL:		http://kaspaliste.sourceforge.net/
-BuildRequires:	postgresql-static
 BuildRequires:	kdelibs-devel
+# TODO: use shared
+BuildRequires:	postgresql-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _htmldir        /usr/share/doc/kde/HTML
@@ -20,6 +22,13 @@ simply storing bibliographical information. There is the possibility
 to create annotated links between pieces of information (like the
 content of a book chapter) and to group the links in categories.
 
+%description -l pl
+Kaspaliste to baza danych literatury. Obs³uguje wszystkie rodzaje
+ksi±¿ek, artyku³ów, ¿urnali, stron WWW itp. Ponadto baza danych
+wykracza daleko poza proste przechowywanie informacji
+bibliograficznych. Umo¿liwia tworzenie opisanych odno¶ników miêdzy
+czê¶ciami informacji (typu zawarto¶æ rozdzia³u ksi±¿ki) oraz
+grupowanie odno¶ników w kategorie.
 
 %prep
 %setup -q
@@ -37,6 +46,7 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
