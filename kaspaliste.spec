@@ -7,10 +7,10 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://kaspaliste.sourceforge.net/%{name}-%{version}.tar.bz2
 # Source0-md5:	f969e50c9731db2c2f07342062d5da84
+Patch0:		%{name}-c++.patch
 URL:		http://kaspaliste.sourceforge.net/
 BuildRequires:	kdelibs-devel
-# TODO: use shared
-BuildRequires:	postgresql-static
+BuildRequires:	postgresql-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _htmldir        /usr/share/doc/kde/HTML
@@ -32,6 +32,7 @@ grupowanie odno¶ników w kategorie.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -40,7 +41,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
-	--disable-rpath
+	--disable-rpath \
+	--with-pg-libs=/usr/lib
 
 %{__make}
 
@@ -61,4 +63,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Applications/*
 %{_datadir}/apps/kaspaliste
+%{_datadir}/config/kaspalisterc
 %{_pixmapsdir}/[!l]*/*/*/*
