@@ -1,12 +1,12 @@
 Summary:	The literature database
 Summary(pl):	Baza danych literatury
 Name:		kaspaliste
-Version:	0.94
+Version:	0.96
 Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://kaspaliste.sourceforge.net/%{name}-%{version}.tar.bz2
-# Source0-md5:	f969e50c9731db2c2f07342062d5da84
+Source0:	http://dl.sourceforge.net/kaspaliste/%{name}-%{version}.tar.gz
+# Source0-md5:	6256575740bb4bc5aa542f10e749bc01
 Patch0:		%{name}-c++.patch
 URL:		http://kaspaliste.sourceforge.net/
 BuildRequires:	kdelibs-devel
@@ -39,7 +39,7 @@ kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure \
+%configure2_13 \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--disable-rpath \
 	--with-pg-libs=/usr/lib
