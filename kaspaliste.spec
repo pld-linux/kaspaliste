@@ -2,7 +2,7 @@ Summary:	The literature database
 Summary(pl):	Baza danych literatury
 Name:		kaspaliste
 Version:	0.96
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/kaspaliste/%{name}-%{version}.tar.gz
@@ -11,9 +11,8 @@ Patch0:		%{name}-c++.patch
 URL:		http://kaspaliste.sourceforge.net/
 BuildRequires:	kdelibs-devel
 BuildRequires:	postgresql-devel
+BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         _htmldir        /usr/share/doc/kde/HTML
 
 %description
 Kaspaliste is a literature database. It handles all kinds of books,
@@ -35,22 +34,28 @@ grupowanie odno¶ników w kategorie.
 %patch -p1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
+kde_htmldir="%{_kdedocdir}"; export kde_htmldir
 
 %configure2_13 \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--disable-rpath \
 	--with-pg-libs=/usr/lib
 
-%{__make}
+%{__make} \
+	CXX="%{__cxx}"
+
+echo 'Categories=Office' >> $RPM_BUILD_ROOT%{_desktopdir}/kde/%{name}.desktop
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
+
+mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/%{name}.desktop \
+   $RPM_BUILD_ROOT%{_desktopdir}/kde
 
 %find_lang %{name} --with-kde
 
@@ -61,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README ChangeLog TODO data/create.tables.sql
 %attr(755,root,root) %{_bindir}/*
-%{_applnkdir}/Applications/*
+%{_desktopdir}/kde/*.desktop
 %{_datadir}/apps/kaspaliste
 %{_datadir}/config/kaspalisterc
-%{_pixmapsdir}/[!l]*/*/*/*
+%{_iconsdir}/hicolor/*/apps/*.png
