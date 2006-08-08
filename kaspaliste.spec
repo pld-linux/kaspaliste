@@ -31,7 +31,7 @@ grupowanie odno¶ników w kategorie.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 
 %build
 kde_htmldir="%{_kdedocdir}"; export kde_htmldir
