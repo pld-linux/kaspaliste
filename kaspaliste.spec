@@ -1,5 +1,5 @@
 Summary:	The literature database
-Summary(pl):	Baza danych literatury
+Summary(pl.UTF-8):   Baza danych literatury
 Name:		kaspaliste
 Version:	0.96
 Release:	0.2
@@ -21,13 +21,13 @@ simply storing bibliographical information. There is the possibility
 to create annotated links between pieces of information (like the
 content of a book chapter) and to group the links in categories.
 
-%description -l pl
-Kaspaliste to baza danych literatury. Obs³uguje wszystkie rodzaje
-ksi±¿ek, artyku³ów, ¿urnali, stron WWW itp. Ponadto baza danych
+%description -l pl.UTF-8
+Kaspaliste to baza danych literatury. ObsÅ‚uguje wszystkie rodzaje
+ksiÄ…Å¼ek, artykuÅ‚Ã³w, Å¼urnali, stron WWW itp. Ponadto baza danych
 wykracza daleko poza proste przechowywanie informacji
-bibliograficznych. Umo¿liwia tworzenie opisanych odno¶ników miêdzy
-czê¶ciami informacji (typu zawarto¶æ rozdzia³u ksi±¿ki) oraz
-grupowanie odno¶ników w kategorie.
+bibliograficznych. UmoÅ¼liwia tworzenie opisanych odnoÅ›nikÃ³w miÄ™dzy
+czÄ™Å›ciami informacji (typu zawartoÅ›Ä‡ rozdziaÅ‚u ksiÄ…Å¼ki) oraz
+grupowanie odnoÅ›nikÃ³w w kategorie.
 
 %prep
 %setup -q
