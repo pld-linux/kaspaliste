@@ -1,5 +1,5 @@
 Summary:	The literature database
-Summary(pl.UTF-8):   Baza danych literatury
+Summary(pl.UTF-8):	Baza danych literatury
 Name:		kaspaliste
 Version:	0.96
 Release:	0.2
